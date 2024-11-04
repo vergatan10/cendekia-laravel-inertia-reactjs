@@ -1,5 +1,5 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs) {
     return twMerge(clsx(inputs));
@@ -8,10 +8,10 @@ export function cn(...inputs) {
 export const FINEPAYMENTSTATUS = {
     PENDING: 'TERTUNDA',
     SUCCESS: 'Sukses',
-    FAILED: 'Gagal'
-}
+    FAILED: 'Gagal',
+};
 
-export function flashMessage(params){
+export function flashMessage(params) {
     return params.props.flash_message;
 }
 
@@ -21,41 +21,40 @@ export const formatToRupiah = (amount) => {
         currency: 'IDR',
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
-    })
+    });
 
     return formatter.format(amount);
-}
+};
 
-export const message =
-{
+export const message = {
     503: {
-        title: "Service Unavailable",
-        description: "Sorry, we are doaing some maintenance. Please check back soon",
+        title: 'Service Unavailable',
+        description: 'Sorry, we are doaing some maintenance. Please check back soon',
         status: '503',
     },
     500: {
-        title: "Server Error",
-        description: "Oops, something went wrong on our servers",
+        title: 'Server Error',
+        description: 'Oops, something went wrong on our servers',
         status: '500',
     },
     404: {
-        title: "Not Found",
-        description: "Sorry, the page you are looking for could not be found",
+        title: 'Not Found',
+        description: 'Sorry, the page you are looking for could not be found',
         status: '404',
     },
     403: {
-        title: "Forbidden",
-        description: "Sorry, you are forbidden from accessing this page",
+        title: 'Forbidden',
+        description: 'Sorry, you are forbidden from accessing this page',
         status: '403',
     },
     401: {
-        title: "Unauthorized",
-        description: "Sorry, you are unauthorized to access this page",
+        title: 'Unauthorized',
+        description: 'Sorry, you are unauthorized to access this page',
         status: '401',
     },
     429: {
-        title: "Too Many Request",
-        description: "Please try again in just a second",
+        title: 'Too Many Request',
+        description: 'Please try again in just a second',
         status: '429',
     },
-}
+};
