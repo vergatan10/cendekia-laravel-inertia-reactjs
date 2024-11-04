@@ -11,13 +11,14 @@ import {
 } from '@/Components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/Components/ui/sheet';
 import { Toaster } from '@/Components/ui/toaster';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { IconLayoutSidebar } from '@tabler/icons-react';
 import Sidebar from './Partials/Sidebar';
 import SidebarResponsive from './Partials/SidebarResponsive';
 
 const AppLayout = ({ title, children }) => {
+    const {url} = usePage();
     return (
         <>
             <Head title={title} />
@@ -30,7 +31,7 @@ const AppLayout = ({ title, children }) => {
                         </div>
                         <div className="flex-1">
                             {/* sidebar */}
-                            <Sidebar />
+                            <Sidebar url={url} />
                         </div>
                     </div>
                 </div>
@@ -53,7 +54,7 @@ const AppLayout = ({ title, children }) => {
                                     </SheetDescription>
                                 </SheetHeader>
                                 {/* menu sidebar responsive */}
-                                <SidebarResponsive />
+                                <SidebarResponsive url={url} />
                             </SheetContent>
                         </Sheet>
                         {/* dropdown */}
