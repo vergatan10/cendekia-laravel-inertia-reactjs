@@ -22,7 +22,7 @@ import {
     IconVersions,
 } from '@tabler/icons-react';
 
-export default function SidebarResponsive({ url }) {
+export default function SidebarResponsive({ url, auth }) {
     return (
         <nav className="grid gap-6 text-lg font-medium">
             <ApplicationLogo />
@@ -61,7 +61,7 @@ export default function SidebarResponsive({ url }) {
                 <div className="px-2 py-2 text-sm font-semibold text-foreground">Lainnya</div>
                 <NavLinkResponsive url="#" title="Pengumuman" icon={IconAlertCircle} />
                 <NavLinkResponsive url={route('profile.edit')} title="Profile" icon={IconUser} />
-                <NavLinkResponsive url="#" title="Logout" icon={IconLogout} />
+                <NavLinkResponsive url={route('logout')} method='post' as='button' className='w-full' title="Logout" icon={IconLogout} />
             </nav>
         </nav>
     );
