@@ -1,3 +1,5 @@
+import ApplicationLogo from '@/Components/ApplicationLogo';
+import { Alert, AlertDescription } from '@/Components/ui/alert';
 import { Button } from '@/Components/ui/button';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Link, useForm } from '@inertiajs/react';
@@ -36,9 +38,8 @@ export default function VerifyEmail({ status }) {
                             </div>
                             {/* form */}
                             <form onSubmit={onHandleSubmit}>
-                                \
                                 <div className="grid gap-4">
-                                    <Button variant="oraneg" size="xl" className="w-full" disabled={processing}>
+                                    <Button variant="orange" size="xl" className="w-full" disabled={processing}>
                                         Resend Verification Email
                                     </Button>
                                 </div>
