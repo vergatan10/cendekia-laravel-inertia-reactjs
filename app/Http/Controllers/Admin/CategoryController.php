@@ -25,6 +25,7 @@ class CategoryController extends Controller
                     'slug'
                 ], 'REGEXP', $value);
             })
+            ->when(request()->field && request()->direction, fn($query) => $query->orderBy(request()->field, request()->direction))
             ->paginate(request()->load ?? 10)
             ->withQueryString();
         return inertia('Admin/Categories/Index', [
