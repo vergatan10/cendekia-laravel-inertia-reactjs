@@ -15,6 +15,7 @@ import { Button } from '@/Components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/Components/ui/card';
 import { Input } from '@/Components/ui/input';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from '@/Components/ui/pagination';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/Components/ui/table';
 import { UseFilter } from '@/hooks/UseFilter';
 import AppLayout from '@/Layouts/AppLayout';
@@ -58,6 +59,18 @@ export default function Index(props) {
                             value={params?.search}
                             onChange={(e) => setParams((prev) => ({ ...prev, search: e.target.value }))}
                         />
+                        <Select value={params?.load} onValueChange={(e) => setParams({ ...params, load: e })}>
+                            <SelectTrigger className="w-full sm:w-24">
+                                <SelectValue placeholder="Load" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {[10, 25, 50, 75, 100].map((number, index) => (
+                                    <SelectItem key={index} value={number}>
+                                        {number}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </div>
                 </CardHeader>
                 <CardContent className="px-0 py-0 [&_td]:whitespace-nowrap [&_th]:px-6">
