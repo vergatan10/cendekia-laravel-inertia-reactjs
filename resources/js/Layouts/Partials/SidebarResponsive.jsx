@@ -41,7 +41,12 @@ export default function SidebarResponsive({ url, auth }) {
                 <NavLinkResponsive url="#" title="Laporan Stok Buku" icon={IconStack3} />
 
                 <div className="px-2 py-2 text-sm font-semibold text-foreground">Master</div>
-                <NavLinkResponsive url="#" title="Kategori" icon={IconCategory} />
+                <NavLinkResponsive
+                    url={route('admin.categories.index')}
+                    active={url.startsWith('/admin/categories')}
+                    title="Kategori"
+                    icon={IconCategory}
+                />
                 <NavLinkResponsive url="#" title="Penerbit" icon={IconBuildingCommunity} />
                 <NavLinkResponsive url="#" title="Buku" icon={IconBooks} />
                 <NavLinkResponsive url="#" title="Pengguna" icon={IconUsersGroup} />
@@ -61,7 +66,14 @@ export default function SidebarResponsive({ url, auth }) {
                 <div className="px-2 py-2 text-sm font-semibold text-foreground">Lainnya</div>
                 <NavLinkResponsive url="#" title="Pengumuman" icon={IconAlertCircle} />
                 <NavLinkResponsive url={route('profile.edit')} title="Profile" icon={IconUser} />
-                <NavLinkResponsive url={route('logout')} method='post' as='button' className='w-full' title="Logout" icon={IconLogout} />
+                <NavLinkResponsive
+                    url={route('logout')}
+                    method="post"
+                    as="button"
+                    className="w-full"
+                    title="Logout"
+                    icon={IconLogout}
+                />
             </nav>
         </nav>
     );

@@ -10,7 +10,7 @@ import {
     DropdownMenuTrigger,
 } from '@/Components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/Components/ui/sheet';
-import { Toaster } from '@/Components/ui/toaster';
+import { Toaster } from '@/Components/ui/sonner';
 import { Head, Link, usePage } from '@inertiajs/react';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { IconLayoutSidebar } from '@tabler/icons-react';
@@ -24,9 +24,9 @@ const AppLayout = ({ title, children }) => {
         <>
             <Head title={title} />
             <Toaster position="top-center" richColors />
-            <div className="flex flex-row w-full min-h-screen">
+            <div className="flex min-h-screen w-full flex-row">
                 <div className="hidden w-1/5 border-r lg:block">
-                    <div className="flex flex-col h-full min-h-screen gap-2">
+                    <div className="flex h-full min-h-screen flex-col gap-2">
                         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
                             <ApplicationLogo />
                         </div>
@@ -36,7 +36,7 @@ const AppLayout = ({ title, children }) => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col w-full lg:w-4/5">
+                <div className="flex w-full flex-col lg:w-4/5">
                     <header className="flex h-12 items-center justify-between gap-4 border-b px-4 lg:h-[60px] lg:justify-end lg:px-6">
                         {/* sidebar responsive */}
                         <Sheet>
@@ -45,7 +45,7 @@ const AppLayout = ({ title, children }) => {
                                     <IconLayoutSidebar className="size-5" />
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent side="left" className="flex flex-col max-h-screen overflow-y-auto">
+                            <SheetContent side="left" className="flex max-h-screen flex-col overflow-y-auto">
                                 <SheetHeader>
                                     <SheetTitle>
                                         <VisuallyHidden.Root>Sidebar Responsive</VisuallyHidden.Root>
@@ -84,7 +84,7 @@ const AppLayout = ({ title, children }) => {
                     <main className="w-full">
                         <div className="relative">
                             <div
-                                className="absolute inset-x-0 overflow-hidden -top-40 -z-10 transform-gpu blur-3xl sm:-top-80"
+                                className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                                 aria-hidden="true"
                             >
                                 <div

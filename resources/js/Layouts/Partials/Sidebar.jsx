@@ -1,3 +1,4 @@
+import NavLink from '@/Components/NavLink';
 import {
     IconAlertCircle,
     IconBooks,
@@ -19,9 +20,8 @@ import {
     IconUsersGroup,
     IconVersions,
 } from '@tabler/icons-react';
-import NavLink from '@/Components/NavLink';
 
-export default function Sidebar({url, auth}){
+export default function Sidebar({ url, auth }) {
     return (
         <nav className="grid items-start px-2 text-sm font-semibold lg:px-4">
             <div className="px-2 py-2 text-sm font-semibold text-foreground">Dashboard</div>
@@ -38,7 +38,12 @@ export default function Sidebar({url, auth}){
             <NavLink url="#" title="Laporan Stok Buku" icon={IconStack3} />
 
             <div className="px-2 py-2 text-sm font-semibold text-foreground">Master</div>
-            <NavLink url="#" title="Kategori" icon={IconCategory} />
+            <NavLink
+                url={route('admin.categories.index')}
+                active={url.startsWith('/admin/categories')}
+                title="Kategori"
+                icon={IconCategory}
+            />
             <NavLink url="#" title="Penerbit" icon={IconBuildingCommunity} />
             <NavLink url="#" title="Buku" icon={IconBooks} />
             <NavLink url="#" title="Pengguna" icon={IconUsersGroup} />

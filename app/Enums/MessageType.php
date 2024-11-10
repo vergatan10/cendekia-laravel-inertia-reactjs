@@ -9,9 +9,9 @@ enum MessageType: string
     case DELETED = 'Berhasil menghapus';
     case ERROR = 'Terjadi kesalahan. Silahkan coba lagi nanti';
 
-    public function message(string $entity, ?string $error = null): string
+    public function message(string $entity = '', ?string $error = null): string
     {
-        if($this === MessageType::ERROR && $error){
+        if ($this === MessageType::ERROR && $error) {
             return "{$this->value} {$error}";
         }
 
