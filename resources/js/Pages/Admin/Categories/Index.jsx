@@ -21,7 +21,7 @@ import { UseFilter } from '@/hooks/UseFilter';
 import AppLayout from '@/Layouts/AppLayout';
 import { flashMessage } from '@/lib/utils';
 import { Link, router } from '@inertiajs/react';
-import { IconArrowsDownUp, IconCategory, IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconArrowsDownUp, IconCategory, IconPencil, IconPlus, IconRefresh, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -79,6 +79,9 @@ export default function Index(props) {
                                 ))}
                             </SelectContent>
                         </Select>
+                        <Button variant="red" onClick={() => setParams(props.state)} size="xl">
+                            <IconRefresh className="size-4" />
+                        </Button>
                     </div>
                 </CardHeader>
                 <CardContent className="px-0 py-0 [&_td]:whitespace-nowrap [&_th]:px-6">
