@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $categories = Category::query()
             ->select(['id', 'name', 'slug', 'cover', 'created_at'])
-            ->filters(request()->only(['search']))
+            ->filter(request()->only(['search']))
             ->sorting(request()->only(['field', 'direction']))
             ->paginate(request()->load ?? 10)
             ->withQueryString();
