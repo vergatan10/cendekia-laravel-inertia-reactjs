@@ -49,7 +49,7 @@ class PublisherController extends Controller
                 'title' => 'Tambah Penerbit',
                 'subtitle' => 'Buat Penerbit baru di sini. Klik simpan setelah selesai',
                 'method' => 'POST',
-                'action' => route('admin.publishers.create'),
+                'action' => route('admin.publishers.store'),
             ],
         ]);
     }

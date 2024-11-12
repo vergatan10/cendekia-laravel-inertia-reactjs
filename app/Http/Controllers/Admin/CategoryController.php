@@ -48,7 +48,7 @@ class CategoryController extends Controller
                 'title' => 'Tambah Kategori',
                 'subtitle' => 'Buat Kategori baru di sini. Klik simpan setelah selesai',
                 'method' => 'POST',
-                'action' => route('admin.categories.create'),
+                'action' => route('admin.categories.store'),
             ],
         ]);
     }
