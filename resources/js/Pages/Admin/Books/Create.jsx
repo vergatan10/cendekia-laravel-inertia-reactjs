@@ -5,9 +5,9 @@ import { Card, CardContent } from '@/Components/ui/card';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
+import { Textarea } from '@/Components/ui/textarea';
 import AppLayout from '@/Layouts/AppLayout';
 import { flashMessage } from '@/lib/utils';
-import { Textarea } from '@headlessui/react';
 import { Link, useForm } from '@inertiajs/react';
 import { IconArrowLeft, IconBook } from '@tabler/icons-react';
 import { useRef } from 'react';
@@ -161,19 +161,6 @@ export default function Create(props) {
                                 placeholder="Masukkan sinopsis..."
                                 value={data.synopsis}
                             ></Textarea>
-                            {errors.synopsis && <InputError message={errors.synopsis} />}
-                        </div>
-
-                        <div className="grid w-full items-center gap-1.5">
-                            <Label htmlFor="synopsis">Sinopsis</Label>
-                            <Input
-                                name="synopsis"
-                                id="synopsis"
-                                type="text"
-                                value={data.synopsis}
-                                onChange={onHandleChange}
-                                placeholder="Masukkan sinopsis..."
-                            />
                             {errors.synopsis && <InputError message={errors.synopsis} />}
                         </div>
 

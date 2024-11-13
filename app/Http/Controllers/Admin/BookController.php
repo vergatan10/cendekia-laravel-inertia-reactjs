@@ -22,7 +22,7 @@ class BookController extends Controller
     public function index(): Response
     {
         $books = Book::query()
-            ->select(['id', 'book_code', 'slug', 'author', 'publication_year', 'isbn', 'language', 'number_of_pages', 'status', 'price', 'category_id', 'publisher_id', 'created_at'])
+            ->select(['id', 'title', 'book_code', 'slug', 'author', 'publication_year', 'isbn', 'language', 'number_of_pages', 'status', 'price', 'cover', 'category_id', 'publisher_id', 'created_at'])
             ->filter(request()->only(['search']))
             ->sorting(request()->only(['field', 'direction']))
             ->with(['category', 'stock', 'publisher'])
@@ -153,7 +153,7 @@ class BookController extends Controller
                 'language' => $request->language,
                 'synopsis' => $request->synopsis,
                 'number_of_pages' => $request->number_of_pages,
-                'status' => $request->total > 0 ? BookStatus::AVAILABLE->value : BookStatus::UNAVAILABLE->value,
+                // 'status' => $request->total > 0 ? BookStatus::AVAILABLE->value : BookStatus::UNAVAILABLE->value,
                 'cover' => $this->update_file($request, $book, 'cover', 'books'),
                 'price' => $request->price,
                 'category_id' => $request->category_id,

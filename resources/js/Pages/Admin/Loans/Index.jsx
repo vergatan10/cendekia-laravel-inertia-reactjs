@@ -10,7 +10,6 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/Components/ui/alert-dialog';
-import { Avatar, AvatarFallback, AvatarImage } from '@/Components/ui/avatar';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/Components/ui/card';
 import { Input } from '@/Components/ui/input';
@@ -19,12 +18,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/Components/ui/table';
 import { UseFilter } from '@/hooks/UseFilter';
 import AppLayout from '@/Layouts/AppLayout';
-import { Link } from '@inertiajs/react';
-import { IconArrowsDownUp, IconBooks, IconPencil, IconPlus, IconRefresh, IconTrash } from '@tabler/icons-react';
+import { flashMessage } from '@/lib/utils';
+import { Link, router } from '@inertiajs/react';
+import { IconArrowsDownUp, IconCreditCardPay, IconPencil, IconPlus, IconRefresh, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 export default function Index(props) {
-    const { data: books, meta } = props.books;
+    const { data: loans, meta } = props.loans;
     const [params, setParams] = useState(props.state);
 
     const onSortable = (field) => {
@@ -36,9 +37,9 @@ export default function Index(props) {
     };
 
     UseFilter({
-        route: route('admin.books.index'),
+        route: route('admin.loans.index'),
         values: params,
-        only: ['books'],
+        only: ['loans'],
     });
 
     return (
@@ -47,10 +48,10 @@ export default function Index(props) {
                 <HeaderTitle
                     title={props.page_settings.title}
                     subtitle={props.page_settings.subtitle}
-                    icon={IconBooks}
+                    icon={IconCreditCardPay}
                 />
                 <Button variant="orange" size="lg" asChild>
-                    <Link href={route('admin.books.create')}>
+                    <Link href={route('admin.loans.create')}>
                         <IconPlus className="size-4" />
                         Tambah
                     </Link>
@@ -98,14 +99,13 @@ export default function Index(props) {
                                         </span>
                                     </Button>
                                 </TableHead>
-
                                 <TableHead>
                                     <Button
                                         variant="ghost"
                                         className="group inline-flex"
-                                        onClick={() => onSortable('book_code')}
+                                        onClick={() => onSortable('loan_code')}
                                     >
-                                        Kode Buku
+                                        Kode Peminjaman
                                         <span className="ml-2 flex-none rounded text-muted-foreground">
                                             <IconArrowsDownUp className="size-4 text-muted-foreground" />
                                         </span>
@@ -115,9 +115,9 @@ export default function Index(props) {
                                     <Button
                                         variant="ghost"
                                         className="group inline-flex"
-                                        onClick={() => onSortable('title')}
+                                        onClick={() => onSortable('user_id')}
                                     >
-                                        Judul
+                                        Nama
                                         <span className="ml-2 flex-none rounded text-muted-foreground">
                                             <IconArrowsDownUp className="size-4 text-muted-foreground" />
                                         </span>
@@ -127,23 +127,9 @@ export default function Index(props) {
                                     <Button
                                         variant="ghost"
                                         className="group inline-flex"
-                                        onClick={() => onSortable('author')}
+                                        onClick={() => onSortable('book_id')}
                                     >
-                                        Penulis
-                                        <span className="ml-2 flex-none rounded text-muted-foreground">
-                                            <IconArrowsDownUp className="size-4 text-muted-foreground" />
-                                        </span>
-                                    </Button>
-                                </TableHead>
-
-                                <TableHead>Stock</TableHead>
-                                <TableHead>
-                                    <Button
-                                        variant="ghost"
-                                        className="group inline-flex"
-                                        onClick={() => onSortable('publication_year')}
-                                    >
-                                        Tahun Publikasi
+                                        Buku
                                         <span className="ml-2 flex-none rounded text-muted-foreground">
                                             <IconArrowsDownUp className="size-4 text-muted-foreground" />
                                         </span>
@@ -153,9 +139,9 @@ export default function Index(props) {
                                     <Button
                                         variant="ghost"
                                         className="group inline-flex"
-                                        onClick={() => onSortable('isbn')}
+                                        onClick={() => onSortable('loan_date')}
                                     >
-                                        ISBN
+                                        Tanggal Peminjaman
                                         <span className="ml-2 flex-none rounded text-muted-foreground">
                                             <IconArrowsDownUp className="size-4 text-muted-foreground" />
                                         </span>
@@ -165,70 +151,9 @@ export default function Index(props) {
                                     <Button
                                         variant="ghost"
                                         className="group inline-flex"
-                                        onClick={() => onSortable('language')}
+                                        onClick={() => onSortable('due_date')}
                                     >
-                                        Bahasa
-                                        <span className="ml-2 flex-none rounded text-muted-foreground">
-                                            <IconArrowsDownUp className="size-4 text-muted-foreground" />
-                                        </span>
-                                    </Button>
-                                </TableHead>
-                                <TableHead>
-                                    <Button
-                                        variant="ghost"
-                                        className="group inline-flex"
-                                        onClick={() => onSortable('number_of_pages')}
-                                    >
-                                        Jumlah Halaman
-                                        <span className="ml-2 flex-none rounded text-muted-foreground">
-                                            <IconArrowsDownUp className="size-4 text-muted-foreground" />
-                                        </span>
-                                    </Button>
-                                </TableHead>
-                                <TableHead>
-                                    <Button
-                                        variant="ghost"
-                                        className="group inline-flex"
-                                        onClick={() => onSortable('status')}
-                                    >
-                                        Status
-                                        <span className="ml-2 flex-none rounded text-muted-foreground">
-                                            <IconArrowsDownUp className="size-4 text-muted-foreground" />
-                                        </span>
-                                    </Button>
-                                </TableHead>
-                                <TableHead>
-                                    <Button
-                                        variant="ghost"
-                                        className="group inline-flex"
-                                        onClick={() => onSortable('price')}
-                                    >
-                                        Harga
-                                        <span className="ml-2 flex-none rounded text-muted-foreground">
-                                            <IconArrowsDownUp className="size-4 text-muted-foreground" />
-                                        </span>
-                                    </Button>
-                                </TableHead>
-                                <TableHead>Cover</TableHead>
-                                <TableHead>
-                                    <Button
-                                        variant="ghost"
-                                        className="group inline-flex"
-                                        onClick={() => onSortable('category_id')}
-                                    >
-                                        Kategori
-                                        <span className="ml-2 flex-none rounded text-muted-foreground">
-                                            <IconArrowsDownUp className="size-4 text-muted-foreground" />
-                                        </span>
-                                    </Button>
-                                </TableHead>
-                                <TableHead>
-                                    <Button
-                                        variant="ghost"
-                                        className="group inline-flex"
-                                        onClick={() => onSortable('publisher_id')}
-                                    >
-                                        Penerbit
+                                        Batas Pengembalian
                                         <span className="ml-2 flex-none rounded text-muted-foreground">
                                             <IconArrowsDownUp className="size-4 text-muted-foreground" />
                                         </span>
@@ -250,32 +175,19 @@ export default function Index(props) {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {books.map((book, index) => (
+                            {loans.map((loan, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{index + 1 + (meta.current_page - 1) * meta.per_page}</TableCell>
-                                    <TableCell>{book.book_code}</TableCell>
-                                    <TableCell>{book.title}</TableCell>
-                                    <TableCell>{book.author}</TableCell>
-                                    <TableCell>{book.stock.total}</TableCell>
-                                    <TableCell>{book.publication_year}</TableCell>
-                                    <TableCell>{book.isbn}</TableCell>
-                                    <TableCell>{book.language}</TableCell>
-                                    <TableCell>{book.number_of_pages}</TableCell>
-                                    <TableCell>{book.status}</TableCell>
-                                    <TableCell>Rp. {book.price}</TableCell>
-                                    <TableCell>
-                                        <Avatar>
-                                            <AvatarImage src={book.cover} />
-                                            <AvatarFallback>{book.cover.substring(0, 1)}</AvatarFallback>
-                                        </Avatar>
-                                    </TableCell>
-                                    <TableCell>{book.category.name}</TableCell>
-                                    <TableCell>{book.publisher.name}</TableCell>
-                                    <TableCell>{book.created_at}</TableCell>
+                                    <TableCell>{loan.loan_code}</TableCell>
+                                    <TableCell>{loan.user.name}</TableCell>
+                                    <TableCell>{loan.book.title}</TableCell>
+                                    <TableCell>{loan.loan_date}</TableCell>
+                                    <TableCell>{loan.due_date}</TableCell>
+                                    <TableCell>{loan.created_at}</TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-x-1">
                                             <Button variant="blue" size="sm" asChild>
-                                                <Link href={route('admin.books.edit', [book])}>
+                                                <Link href={route('admin.loans.edit', [loan])}>
                                                     <IconPencil className="size-4" />
                                                 </Link>
                                             </Button>
@@ -300,7 +212,7 @@ export default function Index(props) {
                                                         <AlertDialogCancel>Cancel</AlertDialogCancel>
                                                         <AlertDialogAction
                                                             onClick={() =>
-                                                                router.delete(route('admin.books.destroy', [book]), {
+                                                                router.delete(route('admin.loans.destroy', [loan]), {
                                                                     preserveScroll: true,
                                                                     preserveState: true,
                                                                     onSuccess: (success) => {
@@ -325,7 +237,7 @@ export default function Index(props) {
                 <CardFooter className="flex w-full flex-col items-center justify-between border-t py-2 lg:flex-row">
                     <p className="mb-2 text-sm text-muted-foreground">
                         Menampilkan <span className="font-medium text-orange-500">{meta.from ?? 0}</span> dari{' '}
-                        {meta.total} buku
+                        {meta.total} peminjaman
                     </p>
                     <div className="overflow-x-auto">
                         {meta.has_pages && (

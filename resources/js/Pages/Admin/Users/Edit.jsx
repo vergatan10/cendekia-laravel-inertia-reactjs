@@ -22,6 +22,7 @@ export default function Create(props) {
         password: '',
         password_confirmation: '',
         avatar: null,
+        phone: props.user.phone ?? '',
         gender: props.user.gender ?? '',
         date_of_birth: props.user.date_of_birth ?? '',
         address: props.user.address ?? '',
@@ -158,6 +159,20 @@ export default function Create(props) {
                             ></Textarea>
                             {errors.address && <InputError message={errors.address} />}
                         </div>
+
+                        <div className="grid w-full items-center gap-1.5">
+                            <Label htmlFor="date_of_birth">Tanggal Lahir</Label>
+                            <Input
+                                name="date_of_birth"
+                                id="date_of_birth"
+                                type="date"
+                                value={data.date_of_birth}
+                                onChange={onHandleChange}
+                                placeholder="Masukkan tanggal lahir..."
+                            />
+                            {errors.date_of_birth && <InputError message={errors.date_of_birth} />}
+                        </div>
+
                         <div className="grid w-full items-center gap-1.5">
                             <Label htmlFor="cover">Cover</Label>
                             <Input

@@ -31,7 +31,7 @@ class FineSettingController extends Controller
             [],
             [
                 'late_fee_per_day' => $request->late_fee_per_day,
-                'damage_fee_percentage' => $request->damage_fee_percentage,
+                'damaged_fee_percentage' => $request->damaged_fee_percentage,
                 'lost_fee_percentage' => $request->lost_fee_percentage,
             ]
         );

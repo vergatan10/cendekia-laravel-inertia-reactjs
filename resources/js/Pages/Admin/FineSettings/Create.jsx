@@ -13,7 +13,7 @@ import { toast } from 'sonner';
 export default function Create(props) {
     const { data, setData, reset, post, processing, errors } = useForm({
         late_fee_per_day: props.fine_setting?.late_fee_per_day ?? 0,
-        damage_fee_percentage: props.fine_setting?.damage_fee_percentage ?? 0,
+        damaged_fee_percentage: props.fine_setting?.damaged_fee_percentage ?? 0,
         lost_fee_percentage: props.fine_setting?.lost_fee_percentage ?? 0,
         _method: props.page_settings.method,
     });
@@ -60,15 +60,15 @@ export default function Create(props) {
                             {errors.late_fee_per_day && <InputError message={errors.late_fee_per_day} />}
                         </div>
                         <div className="grid w-full items-center gap-1.5">
-                            <Label htmlFor="damage_fee_percentage">Denda Rusak</Label>
+                            <Label htmlFor="damaged_fee_percentage">Denda Rusak</Label>
                             <Input
-                                name="damage_fee_percentage"
-                                id="damage_fee_percentage"
+                                name="damaged_fee_percentage"
+                                id="damaged_fee_percentage"
                                 type="number"
-                                value={data.damage_fee_percentage}
+                                value={data.damaged_fee_percentage}
                                 onChange={onHandleChange}
                             />
-                            {errors.damage_fee_percentage && <InputError message={errors.damage_fee_percentage} />}
+                            {errors.damaged_fee_percentage && <InputError message={errors.damaged_fee_percentage} />}
                         </div>
                         <div className="grid w-full items-center gap-1.5">
                             <Label htmlFor="lost_fee_percentage">Denda Hilang</Label>

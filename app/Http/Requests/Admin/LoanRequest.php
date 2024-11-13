@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FineSettingRequest extends FormRequest
+class LoanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,27 +22,22 @@ class FineSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'late_fee_per_day' => [
+            'user' => [
                 'required',
-                'numeric',
+                'exists:users,name',
             ],
-            'damaged_fee_percentage' => [
+            'book' => [
                 'required',
-                'numeric',
-            ],
-            'lost_fee_percentage' => [
-                'required',
-                'numeric',
+                'exists:books,title',
             ],
         ];
     }
 
-    public function attributes()
+    public function attributes(): array
     {
         return [
-            'late_fee_per_day' => 'Denda Keterlambatan',
-            'damaged_fee_percentage' => 'Denda Rusak',
-            'lost_fee_percentage' => 'Denda Hilang',
+            'user' => 'Pengguna',
+            'book' => 'Buku'
         ];
     }
 }

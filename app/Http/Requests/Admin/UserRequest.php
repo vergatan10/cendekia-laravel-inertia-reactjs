@@ -62,6 +62,11 @@ class UserRequest extends FormRequest
                 'min:3',
                 'max:255',
             ],
+            'phone' => [
+                'required',
+                'numeric',
+                'min:10',
+            ],
         ];
     }
 

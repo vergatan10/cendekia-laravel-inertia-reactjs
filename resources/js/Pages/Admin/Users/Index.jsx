@@ -271,7 +271,7 @@ export default function Index(props) {
                 <CardFooter className="flex w-full flex-col items-center justify-between border-t py-2 lg:flex-row">
                     <p className="mb-2 text-sm text-muted-foreground">
                         Menampilkan <span className="font-medium text-orange-500">{meta.from ?? 0}</span> dari{' '}
-                        {meta.total} kategori
+                        {meta.total} pengguna
                     </p>
                     <div className="overflow-x-auto">
                         {meta.has_pages && (

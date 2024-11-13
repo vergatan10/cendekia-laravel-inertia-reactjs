@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index(): Response
     {
         $users = User::query()
-            ->select(['id', 'name', 'username', 'email', 'username', 'avatar', 'gender', 'date_of_birth', 'address', 'created_at'])
+            ->select(['id', 'name', 'username', 'email', 'username', 'avatar', 'phone', 'gender', 'date_of_birth', 'address', 'created_at'])
             ->filter(request()->only(['search']))
             ->sorting(request()->only(['field', 'direction']))
             ->paginate(request()->load ?? 10)
